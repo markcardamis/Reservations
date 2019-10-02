@@ -23,7 +23,7 @@ public class RoomController {
         List<Room> rooms = new ArrayList<>();
         if (roomNumber == null){
             Iterable<Room> results = this.repository.findAll();
-            results.forEach(rooms::add);
+            results.forEach(room -> {rooms.add(room);});
         } else {
             Room room = this.repository.findByNumber(roomNumber);
             if (room != null) {
