@@ -1,6 +1,7 @@
 package com.majoapps.reservations.landon.business.service;
 
 import com.majoapps.reservations.landon.business.domain.RoomReservation;
+import com.majoapps.reservations.landon.data.entity.Guest;
 import com.majoapps.reservations.landon.data.entity.Reservation;
 import com.majoapps.reservations.landon.data.entity.Room;
 import com.majoapps.reservations.landon.data.respository.GuestRepository;
@@ -18,6 +19,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class ReservationService {
@@ -48,14 +50,15 @@ public class ReservationService {
         Iterable<Reservation> reservations = this.reservationRepository.findByDate(new java.sql.Date(date.getTime()));
         if(reservations != null){
             reservations.forEach(reservation -> {
-//                Guest guest = this.guestRepository.findOne(reservation.getGuestId());
-//                if(guest != null){
-//                    RoomReservation roomReservation = roomReservationMap.get(reservation.getId());
-//                    roomReservation.setDate(date);
-//                    roomReservation.setFirstName(guest.getFirstName());
-//                    roomReservation.setLastName(guest.getLastName());
-//                    roomReservation.setGuestId(guest.getId());
-//                }
+                Optional<Guest> guestResponse = this.guestRepository.findById(reservation.getGuestId());
+                if(guestResponse.isPresent()){
+                    Guest guest = guestResponse.get();
+                    RoomReservation roomReservation = roomReservationMap.get(reservation.getId());
+                    roomReservation.setDate(date);
+                    roomReservation.setFirstName(guest.getFirstName());
+                    roomReservation.setLastName(guest.getLastName());
+                    roomReservation.setGuestId(guest.getId());
+                }
             });
         }
         List<RoomReservation> roomReservations = new ArrayList<>();
