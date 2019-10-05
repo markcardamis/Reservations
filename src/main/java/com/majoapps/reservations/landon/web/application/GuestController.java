@@ -27,7 +27,6 @@ public class GuestController {
 
     @RequestMapping(method= RequestMethod.GET)
     public String getRooms(@RequestParam(value="guestNumber", required=false)Long id, Model model){
-        System.out.println(id);
         List<Guest> getGuestById = this.guestService.getGuest(id);
         model.addAttribute("guests", getGuestById);
         return "guests";
