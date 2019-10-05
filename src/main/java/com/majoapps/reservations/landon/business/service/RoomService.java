@@ -16,6 +16,7 @@ public class RoomService {
 
     @Autowired
     public RoomService(RoomRepository roomRepository) {
+        super();
         this.roomRepository = roomRepository;
     }
 
