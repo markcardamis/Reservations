@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Landon Hotel | Guest View</title>
+    <link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+    </tr>
+    <tr th:each="guest:${guests}">
+        <td th:text="${guest.lastName}!=null? ${guest.lastName} + ', ' + ${guest.firstName} : ''">Full Name</td>
+        <td th:text="${guest.emailAddress}"></td>
+        <td th:text="${guest.phoneNumber}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

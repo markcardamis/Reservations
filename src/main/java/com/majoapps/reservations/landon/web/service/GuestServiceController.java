@@ -40,7 +40,6 @@ public class GuestServiceController {
     @RequestMapping(value = "/guest", method= RequestMethod.POST)
     @ResponseStatus(code = HttpStatus.CREATED)
     public Guest save(@RequestBody Guest guest) {
-        System.out.println(guest);
         return guestRepository.save(guest);
     }
 
