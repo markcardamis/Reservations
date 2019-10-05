@@ -30,7 +30,6 @@ public class RoomController {
     public String getRooms(@RequestParam(value="roomNumber", required=false)String roomNumber, Model model){
         List<Room> getRoomById = this.roomService.getRooms(roomNumber);
         model.addAttribute("rooms", getRoomById);
-        System.out.println(roomNumber);
         return "rooms";
     }
 

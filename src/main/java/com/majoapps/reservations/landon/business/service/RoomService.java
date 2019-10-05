@@ -1,6 +1,5 @@
 package com.majoapps.reservations.landon.business.service;
 
-
 import com.majoapps.reservations.landon.data.entity.Room;
 import com.majoapps.reservations.landon.data.respository.RoomRepository;
 
