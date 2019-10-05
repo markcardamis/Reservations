@@ -27,15 +27,21 @@ public class GuestServiceController {
     @Autowired
     private GuestRepository guestRepository;
 
-    @RequestMapping(value="/guest", method= RequestMethod.GET)
-    public List<Guest> getGuestById(@PathVariable(value="guestNumber") Long guestNumber) {
+    @RequestMapping(value="/guest/", method= RequestMethod.GET)
+    public Iterable<Guest> getGuests() {
+        return this.guestRepository.findAll();
+    }
+
+    @RequestMapping(value="/guest/{guestId}", method= RequestMethod.GET)
+    public List<Guest> getGuestById(@PathVariable(value="guestId",required=false) Long guestNumber) {
         return this.guestService.getGuest(guestNumber);
     }
 
     @RequestMapping(value = "/guest", method= RequestMethod.POST)
     @ResponseStatus(code = HttpStatus.CREATED)
     public Guest save(@RequestBody Guest guest) {
-        return this.guestRepository.save(guest);
+        System.out.println(guest);
+        return guestRepository.save(guest);
     }
 
     @RequestMapping(value = "/guest/{guestId}", method= RequestMethod.PUT)

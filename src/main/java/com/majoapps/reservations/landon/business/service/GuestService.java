@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GuestService {
@@ -15,7 +16,6 @@ public class GuestService {
 
     @Autowired
     public GuestService(GuestRepository guestRepository) {
-        super();
         this.guestRepository = guestRepository;
     }
 
@@ -25,16 +25,13 @@ public class GuestService {
             Iterable<Guest> results = this.guestRepository.findAll();
             results.forEach(guest -> {guests.add(guest);});
         } else {
-            Guest guest = this.guestRepository.findOne(id);
-            if (guest != null) {
+            Optional<Guest> guestResponse = this.guestRepository.findById(id);
+            if (guestResponse.isPresent()) {
+                Guest guest = guestResponse.get();
                 guests.add(guest);
             }
         }
         return guests;
-    }
-
-    public Guest findByGuestId(Long id){
-        return this.guestRepository.findOne(id);
     }
 
 }

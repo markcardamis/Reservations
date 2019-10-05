@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GuestRepository extends PagingAndSortingRepository<Guest, Long>, CrudRepository<Guest, Long> {
-    Guest findOne(Long id);
+    //Guest findOne(Long id);
 }
