@@ -25,7 +25,6 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-
     @RequestMapping(method= RequestMethod.GET)
     public String getRooms(@RequestParam(value="roomNumber", required=false)String roomNumber, Model model){
         List<Room> getRoomById = this.roomService.getRooms(roomNumber);
