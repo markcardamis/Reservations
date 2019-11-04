@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping(value="/api")
+@Api(value="/rooms", description = "Data service operations on rooms", tags = ("Rooms"))
 public class RoomServiceController {
 
     @Autowired
